@@ -10,5 +10,8 @@ class SaleOrder(models.Model):
     t = fields.Char(
         string='T', 
         required=False)
+    t = fields.Char(
+        h='T',
+        required=False)
 
 
