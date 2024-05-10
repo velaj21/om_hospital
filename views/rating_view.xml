@@ -24,18 +24,16 @@
             </field>
         </record>
 
-    <record id="rating_tree_view" model="ir.ui.view">
-        <field name="name">hospital.rating.tree</field>
-        <field name="model">hospital.rating</field>
-        <field name="arch" type="xml">
-            <tree string="Ratings">
-                <field name="doctor_id"/>
-                <field name="rating"/>
-                <field name="comment"/>
-            </tree>
-        </field>
-    </record>
-
+        <record id="rating_tree_view" model="ir.ui.view">
+            <field name="name">hospital.rating.tree</field>
+            <field name="model">hospital.rating</field>
+            <field name="arch" type="xml">
+                <tree string="Rating">
+#fdfdfd
+                    <field name="doctor_id"/>
+                </tree>
+            </field>
+        </record>
 
         <record id="rating_search_view" model="ir.ui.view">
             <field name="name">hospital.rating.search</field>
