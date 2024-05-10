@@ -39,6 +39,9 @@
                                     <li>
                                         Gender: <field name="gender"/>
                                     </li>
+                                    <li>
+                                        Average Rating: <field name="average_rating"/>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
