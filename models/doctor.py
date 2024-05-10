@@ -43,3 +43,5 @@ class HospitalDoctor(models.Model):
 # todo krijo nje model te ri turni vendose me 3 psh
 # todo krijo 1 tabel tjt orari i turnit
 # todo krjo nje tabel turni_i_doktorrit qe ka daten me turnin e tij
+# todo do ndryshohet tani llogjika e appointment qe do zgjedhesh turnin
+# bashke me oren dhe do behet dicka per filtrimin qe te maresh keta doktora per turn
