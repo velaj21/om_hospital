@@ -1,9 +1,9 @@
 from odoo import fields, models, api
-class $ModelName$ (models.Model):
-    _name = '$ProjectName$.$TableName$'
-    _description = '$Description$'
-
-    name = fields.Char()
-    $END$
 
 
+class Rating(models.Model):
+    _name = 'hospital.rating'
+
+    doctor_id = fields.Many2one(comodel_name='hospital.doctor', string='Doctor_id')
+    rating = fields.Float(string='Rating', required=True)
+    comment = fields.Text(string='Comment')
