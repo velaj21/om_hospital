@@ -24,7 +24,11 @@ class HospitalDoctor(models.Model):
     image = fields.Binary(string="Patient Image")
     appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
     active = fields.Boolean(string="Active", default=True)
-    rating_ids = fields.One2many('hospital.rating', 'doctor_id', string='Ratings')
+    # rating_ids = fields.One2many('hospital.rating', 'doctor_id', string='Ratings')
+    appointment_ids = fields.Many2one('hospital.appointment', 'doctor_id', string='Ratings')
+
+    def compute_avg_rate(self):
+        pass
 
     def copy(self, default=None):
         if default is None:
