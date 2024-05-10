@@ -9,6 +9,11 @@ class HospitalDoctor(models.Model):
     _description = "Hospital Doctor"
     _rec_name = 'doctor_name'
 
+    #shtova kete
+    rateDoctorin = fields.Integer(
+        string='RateDoctorin',
+        required=False)
+    #
     doctor_name = fields.Char(string='Name', required=True, tracking=True)
     age = fields.Integer(string='Age', tracking=True, copy=False)
     gender = fields.Selection([
