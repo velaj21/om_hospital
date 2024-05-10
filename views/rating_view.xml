@@ -29,7 +29,6 @@
             <field name="model">hospital.rating</field>
             <field name="arch" type="xml">
                 <tree string="Rating">
-#fdfdfd
                     <field name="doctor_id"/>
                 </tree>
             </field>
