@@ -27,7 +27,7 @@ class HospitalAppointment(models.Model):
     date_appointment = fields.Date(string="Date")
     date_checkup = fields.Datetime(string="Check Up Time")
     prescription = fields.Text(string="Prescription")
-    prescription_line_ids = fields.One2many('appointment.prescription.lines', 'appointment_ids',
+    prescription_line_ids = fields.One2many('appointment.prescription.lines', 'appointment_id',
                                             string="Prescription Lines")
     rating = fields.Integer(string="Rating")
 

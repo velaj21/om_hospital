@@ -10,7 +10,6 @@ class HospitalDoctor(models.Model):
     _rec_name = 'doctor_name'
 
     # todo beje nje tabel te re per ratings qe i jep doktorrit dhe gjej mesataren e tij
-    average_rating = fields.Float(string='Average Rating', compute='_compute_average_rating', store=True)
 
     # todo vendos email dhe nr telefoni bej valid vtm per shqiperin
     doctor_name = fields.Char(string='Name', required=True, tracking=True)
@@ -25,10 +24,9 @@ class HospitalDoctor(models.Model):
     appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
     active = fields.Boolean(string="Active", default=True)
     # rating_ids = fields.One2many('hospital.rating', 'doctor_id', string='Ratings')
-    appointment_ids = fields.Many2one('hospital.appointment', string='Ratings')
+    appointment_ids = fields.One2many(comodel_name='hospital.appointment', inverse_name='doctor_id', string='Appointments')
+    average_rating = fields.Float(string='Average Rating', compute='_compute_average_rating', store=True)
 
-    def compute_avg_rate(self):
-        pass
 
     def copy(self, default=None):
         if default is None:
@@ -52,6 +50,7 @@ class HospitalDoctor(models.Model):
     #             rec.average_rating = 0.0
 
     def _compute_average_rating(self):
+        # second method
         for doctor in self:
             total_rating = 0.0
             num_ratings = 0
@@ -63,6 +62,9 @@ class HospitalDoctor(models.Model):
                 doctor.average_rating = total_rating / num_ratings
             else:
                 doctor.average_rating = 0.0
+        # first method
+        #ratings = self.mapped('appointment_ids.rating')
+        # self.average_rating = (sum(ratings) / len(ratings)) if ratings else 0
 
 # todo krijo nje model te ri turni vendose me 3 psh
 # todo krijo 1 tabel tjt orari i turnit
