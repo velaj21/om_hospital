@@ -9,11 +9,11 @@ class HospitalDoctor(models.Model):
     _description = "Hospital Doctor"
     _rec_name = 'doctor_name'
 
-    #shtova kete
+    # todo beje nje tabel te re per ratings qe i jep doktorrit dhe gjej mesataren e tij
     rateDoctorin = fields.Integer(
         string='RateDoctorin',
         required=False)
-    #
+    # todo vendos email dhe nr telefoni bej valid vtm per shqiperin
     doctor_name = fields.Char(string='Name', required=True, tracking=True)
     age = fields.Integer(string='Age', tracking=True, copy=False)
     gender = fields.Selection([
@@ -40,13 +40,6 @@ class HospitalDoctor(models.Model):
             rec.appointment_count = appointment_count
 
 
-
-
-
-
-
-# some code is needed
-
-
-
-
+# todo krijo nje model te ri turni vendose me 3 psh
+# todo krijo 1 tabel tjt orari i turnit
+# todo krjo nje tabel turni_i_doktorrit qe ka daten me turnin e tij
