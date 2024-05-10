@@ -25,7 +25,7 @@ class HospitalDoctor(models.Model):
     appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
     active = fields.Boolean(string="Active", default=True)
     # rating_ids = fields.One2many('hospital.rating', 'doctor_id', string='Ratings')
-    appointment_ids = fields.Many2one('hospital.appointment', 'doctor_id', string='Ratings')
+    appointment_ids = fields.Many2one('hospital.appointment', string='Ratings')
 
     def compute_avg_rate(self):
         pass
