@@ -7,9 +7,10 @@ class Shift(models.Model):
 
     doctor_id = fields.Many2one(comodel_name='hospital.doctor', string='Doctor', required=True)
     TIME_SLOTS = [
-        ('08:00', '05:00'),
-        ('05:00', '12:00'),
-        ('12:00', '8:00'),
+        ('08:00', '08:00'),
+        ('09:00', '09:00'),
+        ('10:00', '10:00'),
+        # Add more time slots as needed
     ]
 
     start_time = fields.Selection(TIME_SLOTS, string='Start Time')

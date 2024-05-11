@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="shift_form_view" model="ir.ui.view">
+            <field name="name">hospital.shift.form</field>
+            <field name="model">hospital.shift</field>
+            <field name="arch" type="xml">
+                <form string="Shift">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="doctor_id"/>
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="shift_tree_view" model="ir.ui.view">
+            <field name="name">hospital.shift.tree</field>
+            <field name="model">hospital.shift</field>
+            <field name="arch" type="xml">
+                <tree string="Shift">
+                    <field name="doctor_id"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="shift_search_view" model="ir.ui.view">
+            <field name="name">hospital.shift.search</field>
+            <field name="model">hospital.shift</field>
+            <field name="arch" type="xml">
+                <search string="Shift">
+                </search>
+            </field>
+        </record>
+
+    <record id="shift_act_window" model="ir.actions.act_window">
+        <field name="name">Shift</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.shift</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Shift.
+            </p>
+        </field>
+    </record>
+
+
+        <menuitem name="Shift" id="shift_menu" parent="menu_hospital_root" action="shift_act_window"/>
+
+    </data>
+</odoo>
