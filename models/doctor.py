@@ -11,6 +11,11 @@ class HospitalDoctor(models.Model):
     _description = "Hospital Doctor"
     _rec_name = 'doctor_name'
 
+    _sql_constraints = [
+        ('unique_email', 'UNIQUE(email)', 'The email must be unique.'),
+        ('unique_phone', 'UNIQUE(phone)', 'The phone number must be unique.')
+    ]
+
     # todo beje nje tabel te re per ratings qe i jep doktorrit dhe gjej mesataren e tij
     email = fields.Char(string='Email', required=True, tracking=True)
     # todo vendos email dhe nr telefoni bej valid vtm per shqiperin
