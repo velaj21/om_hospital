@@ -29,6 +29,7 @@ class HospitalDoctor(models.Model):
     appointment_ids = fields.One2many(comodel_name='hospital.appointment', inverse_name='doctor_id',
                                       string='Appointments')
     average_rating = fields.Float(string='Average Rating', compute='_compute_average_rating', store=True)
+    phone = fields.Char(string='Phone', required=True, tracking=True)
 
     def copy(self, default=None):
         if default is None:
@@ -59,22 +60,31 @@ class HospitalDoctor(models.Model):
                 if not re.match(r"[^@]+@[^@]+\.[^@]+", record.email):
                     raise ValidationError(_("Invalid email format. Please provide a valid email address."))
 
-# def _compute_average_rating(self):
-#     # second method
-#     for doctor in self:
-#         total_rating = 0.0
-#         num_ratings = 0
-#         for appointment in doctor.appointment_ids:
-#             if appointment.rating:
-#                 total_rating += appointment.rating
-#                 num_ratings += 1
-#         if num_ratings:
-#             doctor.average_rating = total_rating / num_ratings
-#         else:
-#             doctor.average_rating = 0.0
-#     # first method
-#     # ratings = self.mapped('appointment_ids.rating')
-#     # self.average_rating = (sum(ratings) / len(ratings)) if ratings else 0
+    @api.constrains('phone')
+    def _check_phone_format(self):
+        for record in self:
+            if record.phone:
+                if not re.match(r"\+355[0-9]{9}$", record.phone):
+                    raise ValidationError(
+                        _("Invalid phone number format."
+                          " Albanian phone numbers should start with '+355' followed by 9 digits."))
+
+    # def _compute_average_rating(self):
+    #     # second method
+    #     for doctor in self:
+    #         total_rating = 0.0
+    #         num_ratings = 0
+    #         for appointment in doctor.appointment_ids:
+    #             if appointment.rating:
+    #                 total_rating += appointment.rating
+    #                 num_ratings += 1
+    #         if num_ratings:
+    #             doctor.average_rating = total_rating / num_ratings
+    #         else:
+    #             doctor.average_rating = 0.0
+    #     # first method
+    #     # ratings = self.mapped('appointment_ids.rating')
+    #     # self.average_rating = (sum(ratings) / len(ratings)) if ratings else 0
 
 # todo krijo nje model te ri turni vendose me 3 psh
 # todo krijo 1 tabel tjt orari i turnit
