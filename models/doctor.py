@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
+import re
 
 
 class HospitalDoctor(models.Model):
@@ -10,7 +12,7 @@ class HospitalDoctor(models.Model):
     _rec_name = 'doctor_name'
 
     # todo beje nje tabel te re per ratings qe i jep doktorrit dhe gjej mesataren e tij
-
+    email = fields.Char(string='Email', required=True, tracking=True)
     # todo vendos email dhe nr telefoni bej valid vtm per shqiperin
     doctor_name = fields.Char(string='Name', required=True, tracking=True)
     age = fields.Integer(string='Age', tracking=True, copy=False)
@@ -49,6 +51,13 @@ class HospitalDoctor(models.Model):
                 doctor.average_rating = sum(int(rating) for rating in ratings) / len(ratings)
             else:
                 doctor.average_rating = 0.0
+
+    @api.constrains('email')
+    def _check_email_format(self):
+        for record in self:
+            if record.email:
+                if not re.match(r"[^@]+@[^@]+\.[^@]+", record.email):
+                    raise ValidationError(_("Invalid email format. Please provide a valid email address."))
 
 # def _compute_average_rating(self):
 #     # second method
