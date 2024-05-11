@@ -23,10 +23,10 @@ class HospitalDoctor(models.Model):
     image = fields.Binary(string="Patient Image")
     appointment_count = fields.Integer(string='Appointment Count', compute='_compute_appointment_count')
     active = fields.Boolean(string="Active", default=True)
-    # rating_ids = fields.One2many('hospital.rating', 'doctor_id', string='Ratings')
-    appointment_ids = fields.One2many(comodel_name='hospital.appointment', inverse_name='doctor_id', string='Appointments')
+    rating_ids = fields.One2many('hospital.rating', 'doctor_id', string='Ratings')
+    appointment_ids = fields.One2many(comodel_name='hospital.appointment', inverse_name='doctor_id',
+                                      string='Appointments')
     average_rating = fields.Float(string='Average Rating', compute='_compute_average_rating', store=True)
-
 
     def copy(self, default=None):
         if default is None:
@@ -41,30 +41,31 @@ class HospitalDoctor(models.Model):
             appointment_count = self.env['hospital.appointment'].search_count([('doctor_id', '=', rec.id)])
             rec.appointment_count = appointment_count
 
-    # def _compute_average_rating(self):
-    #     for rec in self:
-    #         total_rating = sum(rec.rating_ids.mapped('rating'))
-    #         if rec.rating_ids:
-    #             rec.average_rating = total_rating / len(rec.rating_ids)
-    #         else:
-    #             rec.average_rating = 0.0
-
+    @api.depends('rating_ids.rating')
     def _compute_average_rating(self):
-        # second method
         for doctor in self:
-            total_rating = 0.0
-            num_ratings = 0
-            for appointment in doctor.appointment_ids:
-                if appointment.rating:
-                    total_rating += appointment.rating
-                    num_ratings += 1
-            if num_ratings:
-                doctor.average_rating = total_rating / num_ratings
+            ratings = doctor.rating_ids.mapped('rating')
+            if ratings:
+                doctor.average_rating = sum(int(rating) for rating in ratings) / len(ratings)
             else:
                 doctor.average_rating = 0.0
-        # first method
-        #ratings = self.mapped('appointment_ids.rating')
-        # self.average_rating = (sum(ratings) / len(ratings)) if ratings else 0
+
+# def _compute_average_rating(self):
+#     # second method
+#     for doctor in self:
+#         total_rating = 0.0
+#         num_ratings = 0
+#         for appointment in doctor.appointment_ids:
+#             if appointment.rating:
+#                 total_rating += appointment.rating
+#                 num_ratings += 1
+#         if num_ratings:
+#             doctor.average_rating = total_rating / num_ratings
+#         else:
+#             doctor.average_rating = 0.0
+#     # first method
+#     # ratings = self.mapped('appointment_ids.rating')
+#     # self.average_rating = (sum(ratings) / len(ratings)) if ratings else 0
 
 # todo krijo nje model te ri turni vendose me 3 psh
 # todo krijo 1 tabel tjt orari i turnit

@@ -29,7 +29,7 @@ class HospitalAppointment(models.Model):
     prescription = fields.Text(string="Prescription")
     prescription_line_ids = fields.One2many('appointment.prescription.lines', 'appointment_id',
                                             string="Prescription Lines")
-    rating = fields.Integer(string="Rating")
+    # rating = fields.Integer(string="Rating")
 
     def action_confirm(self):
         self.state = 'confirm'
