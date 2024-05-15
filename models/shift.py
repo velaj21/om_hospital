@@ -57,5 +57,6 @@ class Shift(models.Model):
                     shift.shift_type = 'Evening'
                 else:
                     shift.shift_type = 'Night'
+                break
             else:
                 shift.shift_type = False

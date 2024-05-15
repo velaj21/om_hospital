@@ -35,6 +35,8 @@ class HospitalDoctor(models.Model):
                                       string='Appointments')
     average_rating = fields.Float(string='Average Rating', compute='_compute_average_rating', store=True)
     phone = fields.Char(string='Phone', required=True, tracking=True)
+    shift_ids = fields.One2many('hospital.shift', 'doctor_id', string='Shifts')
+    current_shift_type = fields.Char(string='Current Shift Type', compute='_compute_current_shift_type', store=True)
 
     def copy(self, default=None):
         if default is None:
@@ -74,22 +76,11 @@ class HospitalDoctor(models.Model):
                         _("Invalid phone number format."
                           " Albanian phone numbers should start with '+355' followed by 9 digits."))
 
-    # def _compute_average_rating(self):
-    #     # second method
-    #     for doctor in self:
-    #         total_rating = 0.0
-    #         num_ratings = 0
-    #         for appointment in doctor.appointment_ids:
-    #             if appointment.rating:
-    #                 total_rating += appointment.rating
-    #                 num_ratings += 1
-    #         if num_ratings:
-    #             doctor.average_rating = total_rating / num_ratings
-    #         else:
-    #             doctor.average_rating = 0.0
-    #     # first method
-    #     # ratings = self.mapped('appointment_ids.rating')
-    #     # self.average_rating = (sum(ratings) / len(ratings)) if ratings else 0
+    @api.depends('shift_ids')
+    def _compute_current_shift_type(self):
+        current_shift_type = 'Morning'
+        return current_shift_type
+
 
 # todo krijo nje model te ri turni vendose me 3 psh
 # todo krijo 1 tabel tjt orari i turnit

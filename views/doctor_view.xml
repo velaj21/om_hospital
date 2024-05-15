@@ -27,28 +27,39 @@
                 <field name="note"/>
                 <field name="email"/>
                 <field name="phone"/>
+                <field name="current_shift_type"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">
                             <div class="oe_kanban_details">
                                 <ul>
                                     <li>
-                                        Name: <field name="doctor_name"/>
+                                        Name:
+                                        <field name="doctor_name"/>
                                     </li>
                                     <li>
-                                        Age: <field name="age"/>
+                                        Age:
+                                        <field name="age"/>
                                     </li>
                                     <li>
-                                        Gender: <field name="gender"/>
+                                        Gender:
+                                        <field name="gender"/>
                                     </li>
                                     <li>
-                                        Average Rating: <field name="average_rating"/>
+                                        Average Rating:
+                                        <field name="average_rating"/>
                                     </li>
                                     <li>
-                                        Email: <field name="email"/>
+                                        Email:
+                                        <field name="email"/>
                                     </li>
                                     <li>
-                                        Phone: <field name="phone"/>
+                                        Phone:
+                                        <field name="phone"/>
+                                    </li>
+                                    <li>
+                                        Current Shift:
+                                        <field name="current_shift_type"/>
                                     </li>
                                 </ul>
                             </div>
@@ -68,6 +79,7 @@
                 <field name="gender"/>
                 <field name="age"/>
                 <field name="note"/>
+                <field name="current_shift_type"/>
             </tree>
         </field>
     </record>
@@ -99,6 +111,9 @@
                             <field name="note"/>
                             <field name="phone"/>
                             <field name="active" invisible="1"/>
+                        </group>
+                        <group name="shift_info">
+                            <field name="current_shift_type"/>
                         </group>
                     </group>
                 </sheet>
