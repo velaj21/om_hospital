@@ -34,5 +34,14 @@ class Shift(models.Model):
         ('23:00', '11:00 PM'),
     ]
 
-    start_time = fields.Selection(TIME_SLOTS_AM_PM, string='Start Time')
-    end_time = fields.Selection(TIME_SLOTS_AM_PM, string='End Time')
+    start_date = fields.Date(string='Start date', required=True)
+    end_date = fields.Date(string='End date', required=True)
+    shift_type = fields.Selection(
+        string='Shift_type',
+        selection=[('Morning', 'Morning'),
+                   ('Evening', 'Evening'),
+                   ('Night', 'Night')],
+        required=True)
+
+    start_time = fields.Selection(TIME_SLOTS_AM_PM, string='Start Time', required=True)
+    end_time = fields.Selection(TIME_SLOTS_AM_PM, string='End Time', required=True)

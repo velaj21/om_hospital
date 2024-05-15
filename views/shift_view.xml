@@ -11,6 +11,11 @@
                         <group>
                             <group>
                                 <field name="doctor_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="shift_type"/>
                                 <field name="start_time"/>
                                 <field name="end_time"/>
                             </group>
@@ -28,6 +33,7 @@
                     <field name="doctor_id"/>
                     <field name="start_time"/>
                     <field name="end_time"/>
+                    <field name="shift_type"/>
                 </tree>
             </field>
         </record>
@@ -41,17 +47,17 @@
             </field>
         </record>
 
-    <record id="shift_act_window" model="ir.actions.act_window">
-        <field name="name">Shift</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">hospital.shift</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                There is no examples click here to add new Shift.
-            </p>
-        </field>
-    </record>
+        <record id="shift_act_window" model="ir.actions.act_window">
+            <field name="name">Shift</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.shift</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Shift.
+                </p>
+            </field>
+        </record>
 
 
         <menuitem name="Shift" id="shift_menu" parent="menu_hospital_root" action="shift_act_window"/>
