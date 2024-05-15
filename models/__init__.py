@@ -1,6 +1,7 @@
-from . import patient
-from . import doctor
 from . import appointment
-from . import sale
+from . import doctor
+from . import patient
 from . import rating
+from . import sale
 from . import shift
+
