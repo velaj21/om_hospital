@@ -41,7 +41,21 @@ class Shift(models.Model):
         selection=[('Morning', 'Morning'),
                    ('Evening', 'Evening'),
                    ('Night', 'Night')],
-        required=True)
+        String='Shift Type', compute='_compute_shift_type')
 
     start_time = fields.Selection(TIME_SLOTS_AM_PM, string='Start Time', required=True)
     end_time = fields.Selection(TIME_SLOTS_AM_PM, string='End Time', required=True)
+
+    @api.depends('start_time')
+    def _compute_shift_type(self):
+        for shift in self:
+            if shift.start_time:
+                start_hour = int(shift.start_time.split(':')[0])
+                if 6 <= start_hour < 12:
+                    shift.shift_type = 'Morning'
+                elif 12 <= start_hour < 18:
+                    shift.shift_type = 'Evening'
+                else:
+                    shift.shift_type = 'Night'
+            else:
+                shift.shift_type = False
