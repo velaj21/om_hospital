@@ -35,7 +35,8 @@ class HospitalDoctor(models.Model):
                                       string='Appointments')
     average_rating = fields.Float(string='Average Rating', compute='_compute_average_rating', store=True)
     phone = fields.Char(string='Phone', required=True, tracking=True)
-    shift_ids = fields.One2many('hospital.shift', 'doctor_id', string='Shifts')
+    # shift_ids = fields.One2many('hospital.shift', 'doctor_id', string='Shifts')
+    shift_id = fields.Many2one(comodel_name='hospital.shift', string='Shift id')
     current_shift_type = fields.Char(string='Current Shift Type', compute='_compute_current_shift_type', store=True)
 
     def copy(self, default=None):
@@ -76,10 +77,8 @@ class HospitalDoctor(models.Model):
                         _("Invalid phone number format."
                           " Albanian phone numbers should start with '+355' followed by 9 digits."))
 
-    @api.depends('shift_ids')
-    def _compute_current_shift_type(self):
-        current_shift_type = 'Morning'
-        return current_shift_type
+    # @api.depends('shift_id')
+    # def _compute_current_shift_type(self):
 
 
 # todo krijo nje model te ri turni vendose me 3 psh

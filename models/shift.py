@@ -5,7 +5,7 @@ class Shift(models.Model):
     _name = 'hospital.shift'
     _description = 'Description'
 
-    doctor_id = fields.Many2one(comodel_name='hospital.doctor', string='Doctor', required=True)
+    doctor_ids = fields.One2many(comodel_name='hospital.doctor', inverse_name='shift_id', string='Doctor ids')
 
     TIME_SLOTS_AM_PM = [
         ('00:00', '12:00 AM'),
@@ -57,6 +57,5 @@ class Shift(models.Model):
                     shift.shift_type = 'Evening'
                 else:
                     shift.shift_type = 'Night'
-                break
             else:
                 shift.shift_type = False

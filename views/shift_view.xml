@@ -10,12 +10,12 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="doctor_id"/>
+                                <field name="doctor_ids"/>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
                             </group>
                             <group>
-                                <field name="shift_type"/>
+                                <field name="shift_type" widget="many2many_tags"/>
                                 <field name="start_time"/>
                                 <field name="end_time"/>
                             </group>
@@ -30,7 +30,7 @@
             <field name="model">hospital.shift</field>
             <field name="arch" type="xml">
                 <tree string="Shift">
-                    <field name="doctor_id"/>
+                    <field name="doctor_ids"/>
                     <field name="start_time"/>
                     <field name="end_time"/>
                     <field name="shift_type"/>
