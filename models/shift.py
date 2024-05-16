@@ -64,13 +64,13 @@ class Shift(models.Model):
 
     @api.constrains('start_date', 'end_date', 'start_time', 'end_time')
     def _check_conflicting_shifts(self):
-        for shifts in self:
+        for shift in self:
             domain = [
-                ('id', '!=', shifts.id),
-                ('start_date', '<=', shifts.end_date),
-                ('end_date', '>=', shifts.start_date),
-                ('start_time', '<', shifts.end_time),
-                ('end_time', '>', shifts.start_time),
+                ('id', '!=', shift.id),
+                ('start_date', '<=', shift.end_date),
+                ('end_date', '>=', shift.start_date),
+                ('start_time', '<', shift.end_time),
+                ('end_time', '>', shift.start_time),
             ]
             conflicting_shifts = self.search(domain)
             if conflicting_shifts:
