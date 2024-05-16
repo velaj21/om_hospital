@@ -83,8 +83,6 @@ class HospitalDoctor(models.Model):
             else:
                 doctor.current_shift_type = False
 
-
-
 # todo krijo nje model te ri turni vendose me 3 psh
 # todo krijo 1 tabel tjt orari i turnit
 # todo krjo nje tabel turni_i_doktorrit qe ka daten me turnin e tij

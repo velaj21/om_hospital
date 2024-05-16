@@ -8,6 +8,8 @@ class Shift(models.Model):
 
     doctor_ids = fields.One2many(comodel_name='hospital.doctor', inverse_name='shift_id', string='Doctor ids')
 
+    doctor_names = fields.Char(string='Doctor Names', compute='_compute_doctor_names', store=True)
+
     TIME_SLOTS_AM_PM = [
         ('00:00', '12:00 AM'),
         ('01:00', '01:00 AM'),
@@ -46,6 +48,11 @@ class Shift(models.Model):
 
     start_time = fields.Selection(TIME_SLOTS_AM_PM, string='Start Time', required=True)
     end_time = fields.Selection(TIME_SLOTS_AM_PM, string='End Time', required=True)
+
+    @api.depends('doctor_ids')
+    def _compute_doctor_names(self):
+        for shift in self:
+            shift.doctor_names = ', '.join(doctor.doctor_name for doctor in shift.doctor_ids)
 
     @api.depends('start_time')
     def _compute_shift_type(self):
