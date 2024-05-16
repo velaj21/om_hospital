@@ -49,6 +49,13 @@ class Shift(models.Model):
     start_time = fields.Selection(TIME_SLOTS_AM_PM, string='Start Time', required=True)
     end_time = fields.Selection(TIME_SLOTS_AM_PM, string='End Time', required=True)
 
+    # @api.depends('doctor_ids')
+    # def _compute_readonly_doctor_ids(self):
+    #     for shift in self:
+    #         shift.readonly_doctor_ids = bool(shift.doctor_ids)
+    #
+    # readonly_doctor_ids = fields.Boolean(compute='_compute_readonly_doctor_ids', store=True)
+
     @api.depends('doctor_ids')
     def _compute_doctor_names(self):
         for shift in self:
