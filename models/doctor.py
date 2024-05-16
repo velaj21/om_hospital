@@ -77,8 +77,14 @@ class HospitalDoctor(models.Model):
                         _("Invalid phone number format."
                           " Albanian phone numbers should start with '+355' followed by 9 digits."))
 
-    # @api.depends('shift_id')
-    # def _compute_current_shift_type(self):
+    @api.depends('shift_id')
+    def _compute_current_shift_type(self):
+        for doctor in self:
+            if doctor.shift_id:
+                doctor.current_shift_type = doctor.shift_id.shift_type
+            else:
+                doctor.current_shift_type = False
+
 
 
 # todo krijo nje model te ri turni vendose me 3 psh

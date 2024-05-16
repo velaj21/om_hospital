@@ -115,16 +115,11 @@
                         <group name="shift_info">
                             <field name="current_shift_type"/>
                         </group>
-                        <notebook>
-                            <page string="Shifts">
-                                <field name="shift_id">
-                                    <tree string="Fields Description">
-                                        <field name="start_time"/>
-                                        <field name="end_time"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
+<!--                        <notebook>-->
+<!--                            <page string="Shifts">-->
+<!--                                <field name="current_shift_type"/>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
                     </group>
                 </sheet>
                 <div class="oe_chatter">
