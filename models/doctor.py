@@ -16,9 +16,7 @@ class HospitalDoctor(models.Model):
         ('unique_phone', 'UNIQUE(phone)', 'The phone number must be unique.')
     ]
 
-    # todo beje nje tabel te re per ratings qe i jep doktorrit dhe gjej mesataren e tij
     email = fields.Char(string='Email', required=True, tracking=True)
-    # todo vendos email dhe nr telefoni bej valid vtm per shqiperin
     doctor_name = fields.Char(string='Name', required=True, tracking=True)
     age = fields.Integer(string='Age', tracking=True, copy=False)
     gender = fields.Selection([
