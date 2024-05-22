@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="word_form_view" model="ir.ui.view">
+            <field name="name">word.word.form</field>
+            <field name="model">word.word</field>
+            <field name="arch" type="xml">
+                <form string="Word">
+                    <sheet>
+                        <button string="Generate" class="btn btn-link" type="object" name="generate_words"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="word_tree_view" model="ir.ui.view">
+            <field name="name">word.word.tree</field>
+            <field name="model">word.word</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Define the fields you want to display in the tree view -->
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="word_search_view" model="ir.ui.view">
+            <field name="name">word.word.search</field>
+            <field name="model">word.word</field>
+            <field name="arch" type="xml">
+                <search string="Name">
+                </search>
+            </field>
+        </record>
+
+        <record id="word_act_window" model="ir.actions.act_window">
+            <field name="name">Word</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">word.word</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There are no words yet. Click here to add a new words.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Words" id="word_menu" parent="menu_hospital_root" action="word_act_window" sequence="60"/>
+
+    </data>
+</odoo>

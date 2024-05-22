@@ -4,4 +4,4 @@ from . import patient
 from . import rating
 from . import sale
 from . import shift
-
+from . import words
