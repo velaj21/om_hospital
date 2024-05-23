@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_search_my_form" model="ir.ui.view">
+        <field name="name">my.wizard.form</field>
+        <field name="model">my.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Validate xml">
+                <group>
+                    <field name="file"/>
+                    <field name="is_valid"/>
+                </group>
+                <footer>
+                    <button name="validate_xml" type="object" string="Validate xml"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_search_my_xml" model="ir.actions.act_window">
+        <field name="name">Validate xml</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">my.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_search_my_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_validate_xml" name="Validate XML" parent="menu_hospital_root" action="action_search_my_xml"/>
+
+</odoo>

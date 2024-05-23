@@ -25,6 +25,7 @@
         # 'data/slide_data_v15.xml',
         'wizard/create_appointment_view.xml',
         'wizard/search_appointment_view.xml',
+        'wizard/validate_xml_view.xml',
         'views/patient_view.xml',
         'views/doctor_view.xml',
         'views/appointment_view.xml',
