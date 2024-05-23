@@ -1,0 +1,34 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns3:GetInvoicesRequest
+                xmlns:ns2="http://www.w3.org/2000/09/xmldsig#"
+                xmlns:ns3=" https://eFiskalizimi.tatime.gov.al/FiscalizationDataService/schema" Id="Request"
+                Version="3">
+            <ns3:Header SendDateTime=" 2023-10-26T14:35:32+02:00" UUID="836e9e7c-7c2c-4a18-a490-96033801133e"/>
+            <ns3:InvoicesRequestBody FromDate="2022-01-20T00:00:00+01:00" InvTransactionType="SALES" Page="1"
+                                     ToDate=" 2022-02-19T23:59:59+01:00"/>
+            <Signature
+                    xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <SignedInfo>
+                    <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                    <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+                    <Reference URI="#Request">
+                        <Transforms>
+                            <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                            <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                        </Transforms>
+                        <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                        <DigestValue>JpQ+uAaveMZUP6...........Jvu2OqYdzsG24=</DigestValue>
+                    </Reference>
+                </SignedInfo>
+                <SignatureValue>Ba72LgP.......... SVoFyJsJMA=</SignatureValue>
+                <KeyInfo>
+                    <X509Data>
+                        <X509Certificate>MIIFHjCCBA........+go25z&#13;5ppd=</X509Certificate>
+                    </X509Data>
+                </KeyInfo>
+            </Signature>
+        </ns3:GetInvoicesRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

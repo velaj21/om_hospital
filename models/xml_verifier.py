@@ -1,8 +1,7 @@
+import os.path
+import xml.etree.ElementTree as ET
 from odoo import fields, models, api
 
 
-class ModelName(models.Model):
-    _name = 'ProjectName.TableName'
-    _description = 'Description'
-
-    name = fields.Char()
+class XmlVerifier(models.Model):
+    _name = 'xml.verifier'

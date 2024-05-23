@@ -126,6 +126,8 @@ import requests
 url1 = 'https://random-word-api.herokuapp.com/word?number=10'
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
+r = requests.get(url1, headers=headers)
+print(r.text)
 r = requests.get(url1, headers=headers)  # Dergon http get request
 r.raise_for_status()  # ben throw error nqs statusi eshte i ndryshem nga 200
 data = r.json()  # formaton response ne json
